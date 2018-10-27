@@ -12,7 +12,7 @@ import { BootScene } from "./scenes/bootScene";
 import { MainMenuScene } from "./scenes/mainMenuScene";
 import { GameScene } from "./scenes/gameScene";
 
-const config: GameConfig = {
+const config = {
     title: "Tricky Tetric",
     url: "https://github.com/digitsensitive/phaser3-typescript",
     version: "1.0",
@@ -29,7 +29,11 @@ const config: GameConfig = {
         gamepad: false
     },
     physics: {
-        default: "arcade",
+        default: "matter",
+        matter: {
+            gravity: { y: 200 },
+            debug: true
+        },
         arcade: {
             gravity: { y: 200 },
             debug: true
