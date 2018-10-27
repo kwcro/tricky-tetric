@@ -4,18 +4,16 @@ export class Brick extends Phaser.GameObjects.Sprite {
     private walkingSpeed: number;
 
     constructor(params) {
-        super(params.scene, params.x, params.y, params.key);
+        super(params.scene, params.x, params.y, params.key, params.frame);
 
         // physics
         params.scene.physics.world.enable(this);
-        this.body.setGravityY(1000);
-        this.body.setSize(17, 12);
 
         this.initVariables(params);
         this.initImage();
         this.initInput();
 
-        this.currentScene.add.existing(this);
+        params.scene.add.existing(this);
     }
 
     private initVariables(params): void {
@@ -29,7 +27,7 @@ export class Brick extends Phaser.GameObjects.Sprite {
 
     private initImage() {
         // image
-        this.setScale(3);
+        this.setScale(2);
         this.setOrigin(0, 0);
     }
 

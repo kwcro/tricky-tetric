@@ -1,6 +1,6 @@
 import {Brick} from "../objects/Brick";
 
-export class GameScene extends Phaser.Scene{
+export class GameScene extends Phaser.Scene {
 
     private bg: Phaser.GameObjects.TileSprite;
     private brick: Brick;
@@ -18,8 +18,8 @@ export class GameScene extends Phaser.Scene{
 
         this.brick = new Brick({
             scene: this,
-            x: 50,
-            y: 100,
+            x: 150,
+            y: 150,
             key: "brick"
         });
 
@@ -31,6 +31,7 @@ export class GameScene extends Phaser.Scene{
     }
 
     update(): void {
-            this.bg.tilePositionX -= 0.5;
+        this.bg.tilePositionX -= 0.5;
+        this.brick.update();
     }
 }
