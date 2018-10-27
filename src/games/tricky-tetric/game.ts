@@ -12,7 +12,7 @@ import { BootScene } from "./scenes/bootScene";
 import { MainMenuScene } from "./scenes/mainMenuScene";
 import { GameScene } from "./scenes/gameScene";
 
-const config: GameConfig = {
+const config = {
     title: "Tricky Tetric",
     url: "https://github.com/digitsensitive/phaser3-typescript",
     version: "1.0",
