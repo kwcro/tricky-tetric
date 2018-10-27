@@ -29,7 +29,11 @@ const config = {
         gamepad: false
     },
     physics: {
-        default: "arcade",
+        default: "matter",
+        matter: {
+            gravity: { y: 200 },
+            debug: true
+        },
         arcade: {
             gravity: { y: 200 },
             debug: false
