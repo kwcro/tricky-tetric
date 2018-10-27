@@ -20,7 +20,7 @@
       {
         "type": "spritesheet",
         "key": "pipe",
-        "url": "src/games/flappy-bird/assets/sprites/pipe.png",
+        "url": "src/games/flappy-bird/assets/sprites/pipe4.png",
         "frameConfig": {
           "frameWidth": 20,
           "frameHeight": 20
