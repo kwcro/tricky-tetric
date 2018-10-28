@@ -8,6 +8,7 @@
 /// <reference path="../../phaser.d.ts"/>
 
 import "phaser";
+import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
 import { BootScene } from "./scenes/bootScene";
 import { MainMenuScene } from "./scenes/mainMenuScene";
 import { GameScene } from "./scenes/gameScene";
@@ -30,13 +31,22 @@ const config = {
     physics: {
         default: "matter",
         matter: {
-            gravity: { y: 0.1 },
+            gravity: { y: 0.5 },
             debug: true
         },
         arcade: {
             gravity: { y: 1 },
             debug: true
         }
+    },
+    plugins: {
+        scene: [
+            {
+                plugin: PhaserMatterCollisionPlugin, // The plugin class
+                key: "matterCollision", // Where to store in Scene.Systems, e.g. scene.sys.matterCollision
+                mapping: "matterCollision" // Where to store in the Scene, e.g. scene.matterCollision
+            }
+        ]
     },
     backgroundColor: "#57e0f4",
     pixelArt: true,

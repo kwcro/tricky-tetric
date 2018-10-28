@@ -3,6 +3,7 @@ import Events = Phaser.Physics.Matter.Matter.Events;
 import Bodies = Phaser.Physics.Matter.Matter.Bodies;
 import Engine = Phaser.Physics.Matter.Matter.Engine;
 import World = Phaser.Physics.Matter.Matter.World;
+import Body = Phaser.Physics.Matter.Matter.Body;
 
 export class GameScene extends Phaser.Scene {
 
@@ -35,16 +36,27 @@ export class GameScene extends Phaser.Scene {
 
     create(): void {
         this.bg = this.add.tileSprite(200, 300, 400, 600, "background");
-        this.engine = Engine.create();
-        this.floor = Bodies.rectangle(-10, 100, 600, 10, { isStatic: true, friction: 0 });
-        World.add(this.engine.world, [
-            this.floor
-        ]);
-        Events.on(this.engine, "collisionStart", event => {
+        this.floor = Bodies.rectangle(200, 575, 200, 50, { isStatic: true, friction: 0 });
+        this.matter.world.add(this.floor);
+        this.matter.world.on("collisionstart", event => {
             event.pairs.forEach(pair => {
-                const {bodyA, bodyB} = pair;
-                if (bodyA === this.floor || bodyB === this.floor) {
-                    console.log("Something hit the floor!");
+                const { bodyA, bodyB } = pair;
+
+                const gameObjectA = bodyA.gameObject;
+                const gameObjectB = bodyB.gameObject;
+
+                const aIsEmoji = gameObjectA instanceof Phaser.Physics.Matter.Sprite;
+                const bIsEmoji = gameObjectB instanceof Phaser.Physics.Matter.Sprite;
+
+                console.log(gameObjectA);
+                console.log(gameObjectB);
+                console.log(aIsEmoji);
+                console.log(bIsEmoji);
+                if (aIsEmoji && bodyB == this.floor) {
+                    this.brick.freeze();
+                }
+                if (bIsEmoji) {
+                    console.log(gameObjectB);
                 }
             });
         });

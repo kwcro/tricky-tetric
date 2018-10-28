@@ -15,9 +15,8 @@ export class Brick extends Phaser.GameObjects.Sprite {
         // physics
         // TODO: We should this with matter JS, e.g. scene.matter.add.sprite...
         console.log(params.key);
-        this.sprite = params.scene.matter.add.image(params.x, params.y, params.key);
-        this.sprite.setFriction(1);
-        this.sprite.setFrictionStatic(0.1);
+        this.sprite = params.scene.matter.add.sprite(params.x, params.y, params.key);
+        this.sprite.setFriction(3);
 
         params.scene.add.existing(this);
     }
@@ -34,6 +33,11 @@ export class Brick extends Phaser.GameObjects.Sprite {
     private initImage() {
         // image
         this.setOrigin(0.5, 0.5);
+    }
+
+    freeze() {
+        this.sprite.setStatic(true);
+        console.log("freeze called");
     }
 
     update(): void {
