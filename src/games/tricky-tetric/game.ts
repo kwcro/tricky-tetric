@@ -18,7 +18,6 @@ const config = {
     version: "1.0",
     width: 400,
     height: 600,
-    zoom: 1,
     type: Phaser.AUTO,
     parent: "game",
     scene: [BootScene, MainMenuScene, GameScene],
@@ -31,17 +30,16 @@ const config = {
     physics: {
         default: "matter",
         matter: {
-            gravity: { y: 200 },
+            gravity: { y: 0.1 },
             debug: true
         },
         arcade: {
-            gravity: { y: 200 },
+            gravity: { y: 1 },
             debug: true
         }
     },
     backgroundColor: "#57e0f4",
     pixelArt: true,
-    antialias: true
 };
 
 export class Game extends Phaser.Game {

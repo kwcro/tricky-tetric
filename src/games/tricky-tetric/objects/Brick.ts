@@ -4,19 +4,20 @@ export class Brick extends Phaser.GameObjects.Sprite {
     private currentScene: Phaser.Scene;
     private cursors: CursorKeys;
     private walkingSpeed: number;
+    private sprite: Phaser.Physics.Matter.Image;
 
     constructor(params) {
-        super(params.scene, params.x, params.y, params.key, params.frame);
-
-        // physics
-        // TODO: We should this with matter JS, e.g. scene.matter.add.sprite...
-        // params.scene.physics.world.enable(this);
-        // this.body.setGravityY(1000);
-        // this.body.setSize(17, 12);
+        super(params.scene, params.x, params.y, params.key);
 
         this.initVariables(params);
         this.initImage();
         this.initInput();
+        // physics
+        // TODO: We should this with matter JS, e.g. scene.matter.add.sprite...
+        console.log(params.key);
+        this.sprite = params.scene.matter.add.image(params.x, params.y, params.key);
+        this.sprite.setFriction(1);
+        this.sprite.setFrictionStatic(0.1);
 
         params.scene.add.existing(this);
     }
@@ -32,8 +33,7 @@ export class Brick extends Phaser.GameObjects.Sprite {
 
     private initImage() {
         // image
-        this.setScale(2);
-        this.setOrigin(0, 0);
+        this.setOrigin(0.5, 0.5);
     }
 
     update(): void {
@@ -43,9 +43,11 @@ export class Brick extends Phaser.GameObjects.Sprite {
     private handleInput(): void {
         if (this.cursors.right.isDown) {
             this.x += this.walkingSpeed;
+            this.sprite.setVelocityX(0.5);
             this.setFlipX(false);
         } else if (this.cursors.left.isDown) {
             this.x -= this.walkingSpeed;
+            this.sprite.setVelocityX(-0.5);
             this.setFlipX(true);
         }
     }
